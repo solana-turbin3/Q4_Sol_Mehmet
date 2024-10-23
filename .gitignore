@@ -1,0 +1,6 @@
+*wallet.json
+node_modules
+target
+.DS_Store
+wallet.json
+wba-wallet.json
