@@ -18,7 +18,7 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
       null,
       6
     );
-    console.log(`Mint address: ${mint.toBase58()}`); //9wt5V8vzvJ9Uj9xoHfK52W8H9ZU3uXpxyv8fv2aojxLs
+    console.log(`Mint address: ${mint.toBase58()}`);
   } catch (error) {
     console.log(`Oops, something went wrong: ${error}`);
   }
