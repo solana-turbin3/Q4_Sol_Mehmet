@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/icons/icon16.png" />
+  <title>Soolock</title>
+  <style>
+    body {
+      width: 400px;
+      height: 600px;
+      margin: 0;
+      overflow: auto;
+      font-family: 'League Spartan', sans-serif;
+    }
+
+    #root {
+      height: 100%;
+    }
+
+    /* Custom scrollbar styles */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c4ff9e;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b3ff80;
+    }
+
+    /* Extension specific overrides */
+    .wallet-adapter-dropdown {
+      position: relative !important;
+    }
+
+    .wallet-adapter-button {
+      margin: 0 auto !important;
+    }
+
+    .wallet-adapter-modal {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      z-index: 1000 !important;
+    }
+  </style>
+  <script src="/init.js" type="module"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

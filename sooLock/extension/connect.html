@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+            <title>Phantom Wallet Bağlantısı</title>
+            <style>
+                        body {
+                                    background: black;
+                                    color: #c4ff9e;
+                                    font-family: Arial, sans-serif;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 100vh;
+                                    margin: 0;
+                        }
+
+                        .container {
+                                    text-align: center;
+                                    padding: 20px;
+                                    border: 1px solid #c4ff9e;
+                                    border-radius: 8px;
+                        }
+
+                        #status {
+                                    margin-top: 20px;
+                        }
+            </style>
+</head>
+
+<body>
+            <div class="container">
+                        <h1>Phantom Wallet Bağlantısı</h1>
+                        <p>Lütfen Phantom cüzdanınızı bağlayın</p>
+                        <div id="status"></div>
+            </div>
+
+            <script>
+                        async function connectWallet() {
+                                    try {
+                                                const provider = window?.phantom?.solana || window?.solana;
+
+                                                // Eğer Phantom Wallet bulunamazsa hata mesajı
+                                                if (!provider?.isPhantom) {
+                                                            document.getElementById("status").textContent = "Phantom wallet bulunamadı!";
+                                                            return;
+                                                }
+
+                                                // Cüzdanı bağla
+                                                const resp = await provider.connect();
+                                                if (resp.publicKey.toString()) {
+                                                            // Bağlantı başarılı
+                                                            document.getElementById("status").textContent =
+                                                                        "Bağlantı başarılı! Public Key: " + resp.publicKey.toString();
+
+                                                            // Public key'i uzantıya geri gönder
+                                                            window.opener.postMessage(
+                                                                        { type: "PHANTOM_CONNECTED", publicKey: resp.publicKey.toString() },
+                                                                        "*"
+                                                            );
+
+                                                            // Sayfayı 1.5 saniye sonra kapat
+                                                            setTimeout(() => window.close(), 1500);
+                                                } else {
+                                                            // Eğer public key alınamadıysa
+                                                            document.getElementById("status").textContent = "Bağlantı başarısız!";
+                                                }
+                                    } catch (error) {
+                                                // Hata mesajını yazdır
+                                                document.getElementById("status").textContent = "Bağlantı hatası: " + error.message;
+                                    }
+                        }
+
+                        // Sayfa yüklendiğinde bağlantıyı başlat
+                        window.addEventListener("load", connectWallet);
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+const t=document.createElement("script");t.src=chrome.runtime.getURL("inject.js");document.head.appendChild(t);window.addEventListener("message",e=>{e.source!==window||!e.data.type||e.data.type==="PHANTOM_CONNECTED"&&chrome.runtime.sendMessage({action:"PHANTOM_CONNECTED",publicKey:e.data.publicKey})});
